@@ -5,7 +5,7 @@ import tensorflow as tf
 from sklearn.model_selection import train_test_split
 from tensorboard.plugins.hparams import api as hp
 
-from constants import DATA_PATH, EPOCHS, SKIP_PROJECTS
+from constants import DATA_PATH, SKIP_PROJECTS
 from data import Data
 from models import LSTMClassifier
 
@@ -16,7 +16,7 @@ data.save_distribution('distribution.pdf')
 data.print_labels()
 
 # Hyperparameters
-HP_EPOCHS = hp.HParam('epochs', hp.Discrete([5]))
+HP_EPOCHS = hp.HParam('epochs', hp.Discrete([5, 10]))
 HP_EMBEDDING_SIZE = hp.HParam('emb_size', hp.Discrete([100, 200]))
 HP_BATCH_SIZE = hp.HParam('batch_size', hp.Discrete([128]))
 HP_LSTM_SIZE = hp.HParam('lstm_size', hp.Discrete([100]))
@@ -50,6 +50,7 @@ def run(log_dir, hparams):
 
         model = LSTMClassifier(
             nb_features, nb_classes, x_test, y_test, log_dir,
+            epochs=hparams[HP_EPOCHS],
             emb_size=hparams[HP_EMBEDDING_SIZE],
             lstm_size=hparams[HP_LSTM_SIZE],
             max_sequence_length=hparams[HP_MAX_SEQ_LEN],
@@ -58,7 +59,7 @@ def run(log_dir, hparams):
         print(model.summary())
 
         model.train(x_train, y_train,
-                    epochs=EPOCHS, batch_size=hparams[HP_BATCH_SIZE])
+                    epochs=hparams[HP_EPOCHS], batch_size=hparams[HP_BATCH_SIZE])
 
         accuracy = model.evaluate(x_test, y_test)
 
@@ -68,22 +69,23 @@ def run(log_dir, hparams):
             accuracy[0], accuracy[1]))
 
 
-for emb_size in HP_EMBEDDING_SIZE.domain.values:
-    for batch_size in HP_BATCH_SIZE.domain.values:
-        for lstm_size in HP_LSTM_SIZE.domain.values:
-            for max_seq_len in HP_MAX_SEQ_LEN.domain.values:
-                for max_nb_words in HP_MAX_NB_WORDS.domain.values:
+for epochs in HP_EPOCHS.domain.values:
+    for emb_size in HP_EMBEDDING_SIZE.domain.values:
+        for batch_size in HP_BATCH_SIZE.domain.values:
+            for lstm_size in HP_LSTM_SIZE.domain.values:
+                for max_seq_len in HP_MAX_SEQ_LEN.domain.values:
+                    for max_nb_words in HP_MAX_NB_WORDS.domain.values:
 
-                    hparams = {
-                        HP_EMBEDDING_SIZE: emb_size,
-                        HP_BATCH_SIZE: batch_size,
-                        HP_LSTM_SIZE: lstm_size,
-                        HP_MAX_SEQ_LEN: max_seq_len,
-                        HP_MAX_NB_WORDS: max_nb_words,
-                        HP_EPOCHS: EPOCHS
-                    }
+                        hparams = {
+                            HP_EMBEDDING_SIZE: emb_size,
+                            HP_BATCH_SIZE: batch_size,
+                            HP_LSTM_SIZE: lstm_size,
+                            HP_MAX_SEQ_LEN: max_seq_len,
+                            HP_MAX_NB_WORDS: max_nb_words,
+                            HP_EPOCHS: epochs
+                        }
 
-                    run_name = f"run-{datetime.datetime.now():%Y%m%d-%H%M%S}"
-                    print('--- Starting trial: %s' % run_name)
-                    print({h.name: hparams[h] for h in hparams})
-                    run('logs/hparam_tuning/' + run_name, hparams)
+                        run_name = f"run-{datetime.datetime.now():%Y%m%d-%H%M%S}"
+                        print('--- Starting trial: %s' % run_name)
+                        print({h.name: hparams[h] for h in hparams})
+                        run('logs/hparam_tuning/' + run_name, hparams)
