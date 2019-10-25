@@ -14,8 +14,6 @@ from keras.preprocessing.sequence import pad_sequences
 from keras.preprocessing.text import Tokenizer
 from sklearn.utils.class_weight import compute_sample_weight
 
-from constants import EMBEDDING_DIM
-
 
 class Classifier(Sequential):
     """Base class for classifiers
@@ -97,9 +95,9 @@ class LSTMClassifier(Classifier):
 
         lstm_size = kwargs.get('lstm_size')
         max_nb_words = kwargs.get('max_nb_words')
+        emb_size = kwargs.get('emb_size')
 
-        print(max_nb_words)
-        self.add(Embedding(max_nb_words, EMBEDDING_DIM,
+        self.add(Embedding(max_nb_words, emb_size,
                            input_length=self.nb_features))
         self.add(SpatialDropout1D(0.2))
         self.add(LSTM(lstm_size, dropout=0.2, recurrent_dropout=0.2))
@@ -120,9 +118,10 @@ class LSTMBidirectionalClassifier(Classifier):
 
         lstm_size = kwargs.get('lstm_size')
         max_nb_words = kwargs.get('max_nb_words')
+        emb_size = kwargs.get('emb_size')
 
         self.add(
-            Embedding(max_nb_words, EMBEDDING_DIM,
+            Embedding(max_nb_words, emb_size,
                       input_length=self.nb_features))
         self.add(SpatialDropout1D(0.2))
         self.add(Bidirectional(
