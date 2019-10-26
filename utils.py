@@ -3,9 +3,12 @@
 
 import re
 
+import nltk
+from constants import COMMON_WORDS
 from nltk.corpus import stopwords
 
-from constants import COMMON_WORDS
+nltk.download('stopwords')
+
 
 EXCLUDED_WORDS = []
 EXCLUDED_WORDS.extend(stopwords.words('english'))
