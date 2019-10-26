@@ -21,7 +21,7 @@ def clean_text(text):
     text = str(text).lower()  # lowercase text
     text = REPLACE_BY_SPACE_RE.sub(' ', text)
     words = text.split(' ')
-    words = [w.strip() for w in words if w.isalpha()]
+    words = [w.strip() for w in words if w.isalnum()]
     words = [w for w in words if w not in EXCLUDED_WORDS]
 
     text = ' '.join(words)
