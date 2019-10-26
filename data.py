@@ -4,15 +4,14 @@ import os
 
 import matplotlib.pyplot as plt
 import pandas as pd
+from constants import DATA_FT
 from keras.preprocessing.sequence import pad_sequences
 from keras.preprocessing.text import Tokenizer
 from sklearn.preprocessing import LabelEncoder
-
 from utils import clean_text
 
 TEXT_COLUMN = 'text'
 PROJECT_COLUMN = 'project'
-DATA_FT = 'data.ft'
 
 
 class Data:

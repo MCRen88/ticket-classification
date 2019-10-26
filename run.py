@@ -19,9 +19,9 @@ data.print_labels()
 HP_EPOCHS = hp.HParam('epochs', hp.Discrete([5, 10]))
 HP_EMBEDDING_SIZE = hp.HParam('emb_size', hp.Discrete([100, 200]))
 HP_BATCH_SIZE = hp.HParam('batch_size', hp.Discrete([128]))
-HP_LSTM_SIZE = hp.HParam('lstm_size', hp.Discrete([100]))
+HP_LSTM_SIZE = hp.HParam('lstm_size', hp.Discrete([100, 200]))
 HP_MAX_NB_WORDS = hp.HParam(
-    'max_nb_words', hp.Discrete([50000]))
+    'max_nb_words', hp.Discrete([10000, 50000]))
 HP_MAX_SEQ_LEN = hp.HParam(
     'max_seq_len', hp.Discrete([20, 50, 100, 200, 500]))
 
