@@ -99,8 +99,8 @@ class LSTMClassifier(Classifier):
 
         self.add(Embedding(max_nb_words, emb_size,
                            input_length=self.nb_features))
-        self.add(SpatialDropout1D(0.2))
-        self.add(LSTM(lstm_size, dropout=0.2, recurrent_dropout=0.2))
+        self.add(SpatialDropout1D(0.5))
+        self.add(LSTM(lstm_size, dropout=0.5, recurrent_dropout=0.5))
         self.add(Dense(self.nb_classes, activation='softmax'))
 
         self.compile(loss='categorical_crossentropy',
