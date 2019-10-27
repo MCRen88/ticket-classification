@@ -25,12 +25,11 @@ $ git clone https://github.com/Chalmers-IT/ticket-classification.git
 
 $ cd ticket-classification
 $ pip install -r requirements.txt
-
 ```
 
 ## Generate random sample data
 
-Only for testing. The generated test data are random samples
+**Only for testing**: The generated test data is random.
 
 ```
 $ python generate-sample-data.py
@@ -39,14 +38,12 @@ $ python generate-sample-data.py
 ## Train the model
 ```
 $ python run.py
- 
 ```
 
 ## Viewing tensorboard logs:
 
 ```
 $ tensorboard --logdir logs
-
 ```
 
 Open your web browser at http://localhost:6006
@@ -55,8 +52,34 @@ Open your web browser at http://localhost:6006
 Some of the most common words should be added to the list of excluded words (see COMMON_WORDS in constants.py)
 ```
 $ python get-common-words.py
-```
 
+0: 120101
+16: 113099
+129: 92091
+information: 81469
+1: 56468
+e: 55151
+r: 51002
+l: 50583
+dc: 50508
+com: 47357
+2: 47283
+number: 44523
+yes: 43239
+kr: 42582
+error: 39558
+td: 39164
+n: 39084
+remaining: 38574
+capacity: 37379
+run: 37354
+recovery: 36861
+https: 36806
+fatal: 36769
+f: 36189
+address: 34881
+
+```
 
 # Accuracy
 

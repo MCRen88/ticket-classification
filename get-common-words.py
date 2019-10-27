@@ -16,8 +16,14 @@ try:
         for word in word_tokenize(text):
             fdist[word] += 1
 
+    d = {}
     for k, v in fdist.items():
-        print(f"{k}: {v}")
+        if v < 1000:
+            continue
+        d[k] = v
+
+    for w in sorted(d, key=d.get, reverse=True):
+        print(f"{w}: {d[w]}")
 
 except:
     print('No data found')
