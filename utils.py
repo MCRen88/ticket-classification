@@ -9,23 +9,18 @@ from nltk.corpus import stopwords
 
 nltk.download('stopwords')
 
-
 EXCLUDED_WORDS = []
 EXCLUDED_WORDS.extend(stopwords.words('english'))
 EXCLUDED_WORDS.extend(stopwords.words('swedish'))
 EXCLUDED_WORDS.extend(COMMON_WORDS)
-REPLACE_BY_SPACE_RE = re.compile(r'[/(){}\[\]\|@,;]')
 
+BAD_SYMBOLS_RE = re.compile('[^0-9a-zåäöéè]')
 
 def clean_text(text):
     """ text: a string
         return: modified initial string
     """
     text = str(text).lower()  # lowercase text
-    text = REPLACE_BY_SPACE_RE.sub(' ', text)
-    words = text.split(' ')
-    words = [w.strip() for w in words if w.isalnum()]
-    words = [w for w in words if w not in EXCLUDED_WORDS]
-
-    text = ' '.join(words)
+    text = BAD_SYMBOLS_RE.sub(' ', text)
+    text = ' '.join(word for word in text.split() if word not in EXCLUDED_WORDS)
     return text
