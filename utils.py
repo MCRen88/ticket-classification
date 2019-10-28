@@ -16,11 +16,13 @@ EXCLUDED_WORDS.extend(COMMON_WORDS)
 
 BAD_SYMBOLS_RE = re.compile('[^0-9a-zåäöéè]')
 
+
 def clean_text(text):
     """ text: a string
         return: modified initial string
     """
     text = str(text).lower()  # lowercase text
     text = BAD_SYMBOLS_RE.sub(' ', text)
-    text = ' '.join(word for word in text.split() if word not in EXCLUDED_WORDS)
+    text = ' '.join(word for word in text.split()
+                    if word not in EXCLUDED_WORDS)
     return text

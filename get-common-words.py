@@ -20,6 +20,8 @@ try:
     for k, v in fdist.items():
         if v < 1000:
             continue
+        if len(k) < 2:
+            continue
         d[k] = v
 
     for w in sorted(d, key=d.get, reverse=True):
