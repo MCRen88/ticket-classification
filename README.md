@@ -1,11 +1,11 @@
 # Classification of IT support tickets using LSTM
-Oct. 2019
+
 
 - Jean-Marc Orliaguet, jmo@chalmers.se 
 - Andreas Jonassson, andreas@chalmers.se 
 - Mahsa Eshtehardi, mahsae@chalmers.se
 
-IT-Office, Chalmers University of Technology
+IT-Office, Chalmers University of Technology, Oct. 2019
 
 
 ## Background
@@ -93,7 +93,7 @@ address: 34881
 
 ```
 
-# Accuracy
+## Accuracy
 
 Validation and test accuracy is 87-88%
 
@@ -120,17 +120,34 @@ project                                               text
 
 ...
 
+Train on 92263 samples, validate on 10252 samples
+Epoch 1/10
+92263/92263 [==============================] - 672s 7ms/step - loss: 1.4293 - accuracy: 0.5798 - val_loss: 0.9567 - val_accuracy: 0.7123
+Epoch 2/10
+92263/92263 [==============================] - 669s 7ms/step - loss: 0.8154 - accuracy: 0.7654 - val_loss: 0.6098 - val_accuracy: 0.8418
+Epoch 3/10
+92263/92263 [==============================] - 650s 7ms/step - loss: 0.5575 - accuracy: 0.8490 - val_loss: 0.5318 - val_accuracy: 0.8610
+Epoch 4/10
+92263/92263 [==============================] - 620s 7ms/step - loss: 0.4584 - accuracy: 0.8744 - val_loss: 0.5000 - val_accuracy: 0.8662
+Epoch 5/10
+92263/92263 [==============================] - 621s 7ms/step - loss: 0.3947 - accuracy: 0.8901 - val_loss: 0.4931 - val_accuracy: 0.8703
+Epoch 6/10
+92263/92263 [==============================] - 619s 7ms/step - loss: 0.3488 - accuracy: 0.9029 - val_loss: 0.4876 - val_accuracy: 0.8725
+Epoch 7/10
+92263/92263 [==============================] - 620s 7ms/step - loss: 0.3191 - accuracy: 0.9107 - val_loss: 0.4913 - val_accuracy: 0.8724
+Epoch 8/10
+92263/92263 [==============================] - 621s 7ms/step - loss: 0.2908 - accuracy: 0.9175 - val_loss: 0.5034 - val_accuracy: 0.8738
 Epoch 9/10
-92263/92263 [==============================] - 610s 7ms/step - loss: 0.2833 - accuracy: 0.9188 - val_loss: 0.5100 - val_accuracy: 0.8716
+92263/92263 [==============================] - 616s 7ms/step - loss: 0.2700 - accuracy: 0.9222 - val_loss: 0.5113 - val_accuracy: 0.8743
 Epoch 10/10
-92263/92263 [==============================] - 608s 7ms/step - loss: 0.2569 - accuracy: 0.9263 - val_loss: 0.5171 - val_accuracy: 0.8738
-10252/10252 [==============================] - 33s 3ms/step
+92263/92263 [==============================] - 620s 7ms/step - loss: 0.2508 - accuracy: 0.9275 - val_loss: 0.5400 - val_accuracy: 0.8740
+10252/10252 [==============================] - 16s 2ms/step
 Test set
-  Loss: 0.517
+  Loss: 0.540
   Accuracy: 0.874
 ```
 
-# References
+## References
 
 - J.Brownlee, How to Develop a Bidirectional LSTM For Sequence Classification in Python with Keras, June. 2017. https://machinelearningmastery.com/develop-bidirectional-lstm-sequence-classification-python-keras/
 - J.Brownlee, How to Clean Text for Machine Learning with Python, Aug. 2019. https://machinelearningmastery.com/clean-text-machine-learning-python/
