@@ -34,7 +34,6 @@ class Data:
             self.df = pd.read_feather(DATA_FT)
 
         except:
-            print('FAILED')
             file_paths = []
             for root, _, f_names in os.walk(self.path):
                 if len(f_names) == 0:
@@ -64,10 +63,13 @@ class Data:
                     d[PROJECT_COLUMN].append(project)
 
                     count += 1
-                    print(f"\rParsing {count}/{len(file_paths)} files", end='')
+                    print(
+                        f"\rParsing {count}/{len(file_paths)} files ... ", end='')
 
             self.df = pd.DataFrame(data=d)
             self.df.to_feather(DATA_FT)
+
+        print('DONE')
 
     def preview(self):
         """Preview the first 10 lines of dataset
